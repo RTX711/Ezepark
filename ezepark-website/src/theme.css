@@ -1,0 +1,200 @@
+:root {
+  /* Colors (dark, neutral, restrained) */
+  --bg-main: #0a0a0f; /* primary page background */
+  --bg-surface: #0f1115; /* cards and surfaces */
+  --text-main: #e6eef6; /* primary text */
+  --text-muted: #9aa6b2; /* secondary text / muted */
+  --border-subtle: rgba(255,255,255,0.06);
+  --brand-primary: #0b72b9; /* reserved for primary actions */
+  --brand-accent: #6b8ea8; /* small highlights and icons */
+
+  /* Spacing scale */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 48px;
+  --space-5: 96px;
+
+  /* Radius */
+  --radius-card: 14px;
+  --radius-btn: 10px;
+
+  /* Typography */
+  --font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* Base helpers */
+html, body {
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-family);
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-2);
+  padding-right: var(--space-2);
+}
+
+.section {
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+}
+
+/* Navbar */
+.navbar {
+  height: 72px;
+  background: var(--bg-main);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.navbar .nav-links a {
+  color: var(--text-muted);
+  margin: 0 var(--space-2);
+  text-decoration: none;
+}
+
+/* Hero headline gradient only here */
+.hero-headline {
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Cards */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.card:hover { transform: translateY(-2px); }
+
+/* Buttons: only two enterprise variants */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-primary);
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text-main);
+  padding: 14px 28px;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  border: 1px solid var(--border-subtle);
+}
+
+/* Utility text */
+.text-main { color: var(--text-main); }
+.text-muted { color: var(--text-muted); }
+.text-accent { color: var(--brand-accent); }
+
+/* Layout utilities */
+.skip-link { position: absolute; left: -9999px; }
+.skip-link:focus { left: var(--space-2); top: var(--space-2); }
+
+/* Reduce animations */
+* { transition: color 120ms ease, background-color 120ms ease, transform 120ms ease; }
+
+/* Decorative blurred color balls (background) */
+.decor-balls { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.decor-balls .ball {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.16;
+  mix-blend-mode: screen;
+  overflow: visible;
+  animation: float 24s ease-in-out infinite;
+  /* use stacked pseudo layers for smooth crossfade between gradients */
+}
+
+.decor-balls .ball::before,
+.decor-balls .ball::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  display: block;
+}
+
+/* default subtle bluish gradient */
+.decor-balls .ball::before {
+  background: radial-gradient(circle at 30% 30%, rgba(107,142,168,0.45), rgba(11,114,185,0.08));
+  opacity: 1;
+}
+
+/* accent yellow-pink gradient that fades in when scrolled */
+.decor-balls .ball::after {
+  background: radial-gradient(circle at 30% 30%, rgba(255,209,102,0.70), rgba(255,120,180,0.18));
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+.decor-balls .ball.one { top: 6%; left: -4%; background: radial-gradient(circle at 30% 30%, rgba(107,142,168,0.45), rgba(11,114,185,0.14)); animation-duration: 20s; }
+.decor-balls .ball.two { bottom: 12%; right: -6%; background: radial-gradient(circle at 70% 40%, rgba(107,142,168,0.36), rgba(6,34,58,0.06)); animation-duration: 26s; animation-delay: 3s; }
+.decor-balls .ball.three { top: 36%; right: 22%; background: radial-gradient(circle at 50% 50%, rgba(11,114,185,0.28), rgba(107,142,168,0.08)); animation-duration: 22s; animation-delay: 6s; }
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-12px) translateX(16px) scale(1.01); }
+  100% { transform: translateY(0) translateX(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .decor-balls .ball { animation: none !important; }
+  .decor-balls .ball::after { transition: none !important; }
+}
+
+/* when user scrolls down, show the yellow-pink accent */
+.decor-balls.scrolled .ball::after { opacity: 1; }
+
+/* Video player styling */
+.video-player {
+  --video-aspect: 9 / 16; /* portrait by default (9:16). Change to 16/9 for landscape */
+  width: 100%;
+  /* ultra-compact: keeps the player short so users can scroll past in one gesture */
+  max-width: clamp(140px, 24vw, 240px);
+  max-height: 22vh;
+  aspect-ratio: calc(var(--video-aspect));
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: #000;
+  display: block;
+  overflow: hidden;
+  object-fit: contain;
+}
+
+/* Ensure the video element fits the container and doesn't crop unexpectedly */
+video.video-player { width: 100%; height: 100%; display: block; object-fit: contain; }
+
+@media (max-width: 640px) {
+  .video-player { max-width: 84%; max-height: 28vh; }
+}
+
+@media (max-width: 420px) {
+  .video-player { max-width: 92%; max-height: 24vh; }
+}
+
+.video-caption { color: var(--text-muted); font-size: 14px; margin-top: 8px; }
