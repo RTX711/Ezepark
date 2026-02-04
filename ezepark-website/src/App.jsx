@@ -105,7 +105,7 @@ export default function App() {
         <div className="ball three" />
       </div>
       {/* Navigation */}
-      <nav aria-label="Main navigation" className={`navbar fixed top-0 left-0 right-0 z-50 ${scrolled ? 'scrolled' : ''}`}>
+      <nav aria-label="Main navigation" className={`navbar fixed top-0 left-0 right-0 z-50 ${scrolled ? 'scrolled' : ''} ${mobileMenuOpen ? 'menu-open' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3 logo">
@@ -125,7 +125,7 @@ export default function App() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden"
+              className="md:hidden menu-toggle"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
@@ -159,27 +159,50 @@ export default function App() {
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-surface rounded-full opacity-12"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <div className="inline-block mb-6 px-4 py-2 bg-surface border-subtle rounded-full text-accent text-2xl font-mono">
+          <div className="inline-block mb-6 px-4 py-2 bg-surface border-subtle rounded-full text-accent text-8xl font-mono">
              Automated Parking Management System
           </div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight" >
+          <h1 className="text-2xl md:text-5xl lg:text-8xl font-bold mb-6 leading-tight" >
             <span className="hero-headline">Smart Parking</span>
             <br />
             <span className="text-main">Made Seamless</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted mb-12 max-w-3xl mx-auto" >
-            Eliminating congestion. Enhancing experience. Revolutionizing India's ₹2,000+ Cr parking market with QR + ANPR automation.
+          <p className="font-serif text-xl md:text-xl text-muted mb-12 max-w-3xl mx-auto" >
+            "Eliminating congestion. Enhancing experience. Revolutionizing India's ₹2,000+ Cr parking market with QR + ANPR automation."
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <a href="#solution" className="btn-primary flex items-center gap-2">
-              See How It Works
-              <ArrowRight className="text-main" size={20} />
-            </a>
-            <a href="#contact" className="btn-secondary">
-              Request Demo
-            </a>
+            <a 
+  href="#solution" 
+  className="group relative flex items-center gap-2 overflow-hidden rounded-full border border-white/20 bg-white/10 px-6 py-3 backdrop-blur-md transition-all hover:border-pink-400/40 hover:bg-white/15 hover:shadow-lg hover:shadow-pink-500/20"
+>
+  <span className="relative z-10 font-medium text-black">See How It Works</span>
+  <ArrowRight className="relative z-10 text-pink-400 transition-transform group-hover:translate-x-1" size={20} />
+  
+  {/* Pink highlight glow */}
+  <div className="absolute inset-0 -z-0 bg-gradient-to-r from-pink-500/20 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+  
+  {/* Subtle shimmer effect */}
+  <div className="absolute -inset-full top-0 -z-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-pink-300/10 opacity-0 transition-all group-hover:animate-shimmer group-hover:opacity-100" />
+</a>
+            <a 
+  href="#contact" 
+  className="group relative flex items-center justify-center overflow-hidden rounded-full border border-pink-400/30 bg-pink-500/10 px-6 py-3 backdrop-blur-md transition-all hover:border-pink-400/50 hover:bg-pink-500/20 hover:shadow-lg hover:shadow-pink-500/30"
+>
+  <span className="relative z-10 font-medium text-black-200 transition-colors group-hover:text-grey">
+    Request Demo
+  </span>
+  
+  {/* Pink highlight glow */}
+  <div className="absolute inset-0 -z-0 bg-gradient-to-r from-pink-400/30 via-pink-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+  
+  {/* Subtle shimmer effect */}
+  <div className="absolute -inset-full top-0 -z-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-pink-300/20 opacity-0 transition-all group-hover:animate-shimmer group-hover:opacity-100" />
+  
+  {/* Optional: Subtle pulse effect on the border */}
+  <div className="absolute inset-0 -z-10 rounded-full bg-pink-500/5 blur-xl transition-all group-hover:bg-pink-500/10" />
+</a>
           </div>
 
           {/* Stats */}
