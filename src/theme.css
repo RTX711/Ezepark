@@ -1,16 +1,16 @@
 :root {
 
 
-  /* Colors (light, Apple-inspired) */
-  --bg-main: #ffffff; /* primary page background */
-  --bg-surface: #f5f5f7; /* cards and surfaces */
-  --bg-elevated: #ffffff; /* elevated panels */
-  --text-main: #1d1d1f; /* primary text */
-  --text-muted: #6e6e73; /* secondary text / muted */
-  --border-subtle: rgba(0,0,0,0.08);
-  --brand-primary: #1d1d1f; /* primary actions */
-  --brand-accent: #0a84ff; /* small highlights and links */
-  --brand-soft: #f2f2f2;
+  /* Colors (modern professional palette) */
+  --bg-main: #f4f7fb; /* page background */
+  --bg-surface: #ffffff; /* cards and surfaces */
+  --bg-elevated: #f8fbff; /* elevated panels */
+  --text-main: #0f172a; /* primary text */
+  --text-muted: #5b677d; /* secondary text / muted */
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --brand-primary: #0f4f8a; /* primary actions */
+  --brand-accent: #0570d9; /* small highlights and links */
+  --brand-soft: #e8f1ff;
 
   /* Spacing scale */
   --space-1: 8px;
@@ -159,10 +159,26 @@ html, body {
 
 /* Hero headline gradient only here */
 .hero-headline {
-  background: linear-gradient(90deg, #1d1d1f, #4a4a4f);
+  background: linear-gradient(90deg, #0f172a, #334155);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.hero-section {
+  background: radial-gradient(circle at top center, rgba(5, 112, 217, 0.10), transparent 30%),
+              linear-gradient(180deg, #f9fbff 0%, #eef4fb 100%);
+}
+
+.video-card {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0.5rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
 }
 
 /* Cards */
@@ -271,30 +287,37 @@ html, body {
 
 /* Video player styling */
 .video-player {
-  --video-aspect: 9 / 16; /* portrait by default (9:16). Change to 16/9 for landscape */
+  --video-aspect: 16 / 9;
   width: 100%;
-  /* ultra-compact: keeps the player short so users can scroll past in one gesture */
-  max-width: clamp(140px, 24vw, 240px);
-  max-height: 22vh;
+  max-width: 100%;
   aspect-ratio: calc(var(--video-aspect));
   height: auto;
-  border-radius: 10px;
+  border-radius: 20px;
   border: 1px solid var(--border-subtle);
   background: #000;
   display: block;
   overflow: hidden;
-  object-fit: contain;
+  object-fit: cover;
+  min-height: 280px;
 }
 
 /* Ensure the video element fits the container and doesn't crop unexpectedly */
-video.video-player { width: 100%; height: 100%; display: block; object-fit: contain; }
+video.video-player { width: 100%; height: 100%; display: block; object-fit: cover; }
 
-@media (max-width: 640px) {
-  .video-player { max-width: 84%; max-height: 28vh; }
+@media (max-width: 1024px) {
+  .video-card { padding: 0.5rem; }
 }
 
-@media (max-width: 420px) {
-  .video-player { max-width: 92%; max-height: 24vh; }
+@media (max-width: 768px) {
+  .video-player {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-player {
+    min-height: 180px;
+  }
 }
 
 .video-caption { color: var(--text-muted); font-size: 14px; margin-top: 8px; }
