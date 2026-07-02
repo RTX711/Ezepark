@@ -1,0 +1,110 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Sora', sans-serif;
+  background: #0a0a0f;
+  color: white;
+  overflow-x: hidden;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+:root {
+  /* ensure theme variables are available */
+}
+
+@import './theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base typography scale */
+body {
+  font-family: var(--font-family);
+  background: var(--bg-main);
+  color: var(--text-main);
+  overflow-x: hidden;
+  font-size: 18px; /* Body */
+}
+
+h1 { font-size: 56px; font-weight: 700; color: var(--text-main); }
+h2 { font-size: 36px; font-weight: 600; color: var(--text-main); }
+h3 { font-size: 24px; font-weight: 600; color: var(--text-main); }
+p, li { font-size: 18px; color: var(--text-muted); }
+.small { font-size: 14px; }
+
+/* Reusable layout */
+.section { padding: var(--space-4) 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-2); }
+
+/* Removing flashy styles: no glows, no heavy blur */
+.noise, .grid-pattern { opacity: 0.02; }
+.card-glow { box-shadow: none; }
+
+/* Legacy classes mapped to theme */
+.bg-main { background: var(--bg-main) !important; }
+.bg-surface { background: var(--bg-surface) !important; }
+.text-main { color: var(--text-main) !important; }
+.text-muted { color: var(--text-muted) !important; }
+.text-accent { color: var(--brand-accent) !important; }
+.border-subtle { border: 1px solid var(--border-subtle) !important; }
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+  box-shadow: none;
+  transition: transform 120ms ease;
+}
+.card:hover { transform: translateY(-2px); }
+.btn-primary, .btn-secondary { /* defined centrally in theme.css */ }
+
+:focus-visible {
+  outline: 3px solid rgba(0,212,255,0.6);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-glow,
+  .animate-slide-up,
+  .animate-slide-right {
+    animation: none !important;
+  }
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus,
+.skip-link:active {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  background: rgba(2,6,23,0.95);
+  color: #e6faff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  z-index: 9999;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+/* Improve muted text contrast for readability */
+body .text-gray-400 {
+  color: #bfc7cf;
+}

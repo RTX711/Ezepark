@@ -56,7 +56,7 @@ export default function App() {
     { value: '2-3 min', label: 'Entry Time', icon: Clock },
     { value: '99.9%', label: 'Reliability', icon: Shield },
     { value: '500+', label: 'Malls in India', icon: MapPin },
-    { value: '₹6000+ Cr', label: 'Market Size', icon: TrendingUp }
+    { value: '₹2000+ Cr', label: 'Market Size', icon: TrendingUp }
   ];
 
   const features = [
@@ -95,9 +95,6 @@ export default function App() {
     { quarter: 'Q2-Q3 2026', title: 'Expansion Phase', desc: '15 malls, 50K+ monthly users' },
     { quarter: 'Q4 2026+', title: 'Dominance Phase', desc: '₹15-20 Cr ARR, National expansion' }
   ];
-
-  // Toggle to show/hide the final Contact/CTA section temporarily
-  const SHOW_CONTACT_SECTION = false;
 
   return (
     <div className="min-h-screen bg-main text-main overflow-x-hidden">
@@ -162,7 +159,7 @@ export default function App() {
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-surface rounded-full opacity-12"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <div className="inline-block mb-6 px-4 py-2 bg-surface border-subtle rounded-full text-accent text-5xl font-mono">
+          <div className="inline-block mb-6 px-4 py-2 bg-surface border-subtle rounded-full text-accent text-8xl font-mono">
              Automated Parking Management System
           </div>
           
@@ -173,7 +170,7 @@ export default function App() {
           </h1>
           
           <p className="font-serif text-xl md:text-xl text-muted mb-12 max-w-3xl mx-auto" >
-            "Eliminating congestion. Enhancing experience. Revolutionizing India's ₹6,000+ Cr parking market with QR + ANPR automation."
+            "Eliminating congestion. Enhancing experience. Revolutionizing India's ₹2,000+ Cr parking market with QR + ANPR automation."
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <a 
@@ -227,8 +224,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="text-center mb-8">
             <h2 className="text-4xl font-bold mb-2">Product Walkthrough</h2>
-            <p className="text-muted font-serif">Watch a quick UI walkthrough demonstrating core flows.
-              *Actual product may vary from demo*</p>
+            <p className="text-muted">Watch a quick UI walkthrough demonstrating core flows.*Actual product may vary from demo*</p>
           </div>
 
           <div className="max-w-[280px] md:max-w-[320px] mx-auto  aspect-[9/19] relative">
@@ -242,15 +238,15 @@ export default function App() {
               <source src="/videos/walkthrough.mp4" type="video/mp4" />
               Your browser does not support the video tag. You can <a href="/videos/walkthrough.mp4">download the walkthrough video</a>.
             </video>
-            <div className="font-serif video-caption my-2 mx-10">"Tip: use fullscreen for best viewing"</div>
+            <div className="video-caption my-2 mx-10">Tip: use fullscreen for best viewing..</div>
           </div>
         </div>
       </section>
 
       {/* Problem Section */}
-  <section id="problem" className="py-24 relative bg-amber-200">
+      <section id="problem" className="py-24 relative bg-amber-200">
         <div className="absolute inset-0" style={{pointerEvents: 'none'}}></div>
-        <div className="font-serif max-w-7xl mx-auto px-6 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold mb-4">
               The <span className="text-main">Problem</span>
@@ -265,15 +261,12 @@ export default function App() {
               { icon: BarChart3, title: 'Blind Operations', desc: 'Mall operations teams lack real-time occupancy data for effective management' },
               { icon: TrendingUp, title: 'Revenue Leakage', desc: 'High cash leakage and audit gaps inherent in manual ticketing systems' }
             ].map((problem, idx) => (
-              <div key={idx} className="group relative overflow-hidden rounded-2xl border border-white/40 bg-white/20 p-6 backdrop-blur-md transition-all hover:border-white/60 hover:bg-white/30 hover:shadow-lg hover:shadow-black/10">
-                <div className={`relative z-10 w-14 h-14 bg-white/30 rounded-xl flex items-center justify-center mb-4 border border-white/40 backdrop-blur-sm`}>
-                  <problem.icon className="w-7 h-7 text-gray-700" />
+              <div key={idx} className="card">
+                <div className={`w-14 h-14 bg-surface rounded-xl flex items-center justify-center mb-4 border-subtle`}>
+                  <problem.icon className="w-7 h-7 text-accent" />
                 </div>
-                <h3 className="relative z-10 text-xl font-bold mb-3 text-gray-800">{problem.title}</h3>
-                <p className="relative z-10 text-gray-600">{problem.desc}</p>
-                
-                {/* Subtle shimmer effect */}
-                <div className="absolute -inset-full top-0 -z-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white/20 opacity-0 transition-all group-hover:animate-shimmer group-hover:opacity-100" />
+                <h3 className="text-xl font-bold mb-3 text-main">{problem.title}</h3>
+                <p className="text-muted">{problem.desc}</p>
               </div>
             ))}
           </div>
@@ -281,8 +274,8 @@ export default function App() {
       </section>
 
       {/* Solution Section */}
-   <section id="solution" className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-6 font-serif">
+      <section id="solution" className="py-24 relative">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold mb-4">
               The <span className="text-main">Solution</span>
@@ -295,38 +288,32 @@ export default function App() {
               <div
                 key={feature.id}
                 onClick={() => setActiveTab(feature.id)}
-                className={`group cursor-pointer relative overflow-hidden rounded-2xl border border-white/60 bg-white/40 p-6 backdrop-blur-lg shadow-md transition-all hover:border-white/80 hover:bg-white/50 hover:shadow-xl hover:shadow-black/10 ${activeTab === feature.id ? 'border-white/80 bg-white/50 shadow-xl shadow-black/10' : ''}`}
+                className={`cursor-pointer card transition-all ${activeTab === feature.id ? '' : ''}`}
               >
-                <div className={`relative z-10 w-16 h-16 bg-white/50 rounded-xl flex items-center justify-center mb-6 border border-white/60 backdrop-blur-md shadow-sm`}>
-                  <feature.icon className="w-8 h-8 text-gray-700" />
+                <div className={`w-16 h-16 bg-surface rounded-xl flex items-center justify-center mb-6 border-subtle`}>
+                  <feature.icon className="w-8 h-8 text-accent" />
                 </div>
-                <div className="relative z-10 font-mono text-gray-700 text-sm mb-2">PHASE 0{idx + 1}</div>
-                <h3 className="relative z-10 text-2xl font-bold mb-3 text-gray-800">{feature.title}</h3>
-                <p className="relative z-10 text-gray-600">{feature.description}</p>
-                
-                {/* Subtle shimmer effect */}
-                <div className="absolute -inset-full top-0 -z-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white/30 opacity-0 transition-all group-hover:animate-shimmer group-hover:opacity-100" />
+                <div className="font-mono text-accent text-sm mb-2">PHASE 0{idx + 1}</div>
+                <h3 className="text-2xl font-bold mb-3 text-main">{feature.title}</h3>
+                <p className="text-muted">{feature.description}</p>
               </div>
             ))}
           </div>
 
-          <div className="group relative overflow-hidden rounded-2xl border border-white/60 bg-white/40 p-6 backdrop-blur-lg shadow-md transition-all hover:border-white/80 hover:bg-white/50 hover:shadow-xl hover:shadow-black/10">
-            <div className="relative z-10 flex flex-wrap gap-4 justify-center text-sm font-mono text-gray-600">
-              <span className="px-4 py-2 rounded-lg bg-white/50 border border-white/60 backdrop-blur-md shadow-sm">Automated Exit Verification</span>
-              <span className="px-4 py-2 rounded-lg bg-white/50 border border-white/60 backdrop-blur-md shadow-sm">Real-Time Dashboard</span>
-              <span className="px-4 py-2 rounded-lg bg-white/50 border border-white/60 backdrop-blur-md shadow-sm">Revenue Analytics</span>
-              <span className="px-4 py-2 rounded-lg bg-white/50 border border-white/60 backdrop-blur-md shadow-sm">Coupon Campaigns</span>
-              <span className="px-4 py-2 rounded-lg bg-white/50 border border-white/60 backdrop-blur-md shadow-sm">SaaS Architecture</span>
+          <div className="card">
+            <div className="flex flex-wrap gap-4 justify-center text-sm font-mono text-muted">
+              <span className="px-4 py-2 rounded-lg">Automated Exit Verification</span>
+              <span className="px-4 py-2 rounded-lg">Real-Time Dashboard</span>
+              <span className="px-4 py-2 rounded-lg">Revenue Analytics</span>
+              <span className="px-4 py-2 rounded-lg">Coupon Campaigns</span>
+              <span className="px-4 py-2 rounded-lg">SaaS Architecture</span>
             </div>
-            
-            {/* Subtle shimmer effect */}
-            <div className="absolute -inset-full top-0 -z-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white/30 opacity-0 transition-all group-hover:animate-shimmer group-hover:opacity-100" />
           </div>
         </div>
       </section>
 
       {/* Competitive Advantage */}
-      <section id="tech" className="py-24 relative bg-amber-200 font-serif">
+      <section id="tech" className="py-24 relative bg-amber-200">
         <div className="absolute inset-0" style={{pointerEvents: 'none'}}></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
@@ -365,17 +352,17 @@ export default function App() {
 
       {/* Market & Roadmap */}
       <section id="market" className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-6 font-serif">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold mb-4">
               Market <span className="text-main">Opportunity</span>
             </h2>
-            <p className="text-xl text-muted">Tapping into India's ₹6,000+ Cr market</p>
+            <p className="text-xl text-muted">Tapping into India's ₹2,000+ Cr market</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <div className="card text-center">
-              <div className="text-4xl font-bold text-main mb-2">₹6,000+ Cr</div>
+              <div className="text-4xl font-bold text-main mb-2">₹2,000+ Cr</div>
               <div className="text-muted mb-2">TAM - Annual Revenue</div>
               <div className="text-sm text-muted">500+ organized malls across India</div>
             </div>
@@ -393,7 +380,7 @@ export default function App() {
 
           {/* Roadmap */}
           <div className="card p-8 md:p-12">
-            <h3 className="text-4xl font-bold mb-8 text-center font-serif">18-Month Strategic Roadmap</h3>
+            <h3 className="text-3xl font-bold mb-8 text-center">18-Month Strategic Roadmap</h3>
             <div className="grid md:grid-cols-3 gap-8">
               {timeline.map((phase, idx) => (
                 <div key={idx} className="relative">
@@ -415,7 +402,7 @@ export default function App() {
 
       {/* Team */}
       <section className="py-24 relative bg-amber-200 border-t border-subtle  ">
-        <div className="max-w-7xl mx-auto px-6 font-serif relative z-10">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold mb-4">
               The <span className="text-main ">Team</span>
@@ -451,87 +438,42 @@ export default function App() {
       </section>
 
       {/* CTA Section */}
-      {SHOW_CONTACT_SECTION && (
       <section id="contact" className="py-24 relative">
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10 container">
           <div className="card rounded-3xl p-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-serif">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Ready to <span className="text-main">Transform Parking?</span>
             </h2>
-            <p className="text-4xl text-muted mb-8 max-w-4xl mx-auto font-mono">
-              Raising ₹25 lakhs for 7%% equity  to revolutionize Indian parking. Join us in building the future of urban mobility.
+            <p className="text-xl text-muted mb-8 max-w-2xl mx-auto">
+              Raising ₹1 Crore to revolutionize Indian parking. Join us in building the future of urban mobility.
             </p>
             
-            <div className="mt-9 grid md:grid-cols-3 gap-4 mb-8 text-md font-serif">
-  <div className="group relative overflow-hidden rounded-2xl border border-gray-300/30 bg-gray-200/20 p-4 text-center backdrop-blur-md transition-all hover:border-gray-400/50 hover:bg-gray-300/30 hover:shadow-lg hover:shadow-gray-500/20">
-    <div className="relative z-10 font-bold text-gray-800 mb-1">6 Months</div>
-    <div className="relative z-10 text-gray-600">5 Malls Live</div>
-    
-    {/* Greyish highlight glow */}
-    <div className="absolute inset-0 -z-0 bg-gradient-to-br from-gray-400/20 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-    
-    {/* Subtle shimmer effect */}
-    <div className="absolute -inset-full top-0 -z-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-gray-300/20 opacity-0 transition-all group-hover:animate-shimmer group-hover:opacity-100" />
-  </div>
-  
-  <div className="group relative overflow-hidden rounded-2xl border border-gray-300/30 bg-gray-200/20 p-4 text-center backdrop-blur-md transition-all hover:border-gray-400/50 hover:bg-gray-300/30 hover:shadow-lg hover:shadow-gray-500/20">
-    <div className="relative z-10 font-bold text-gray-800 mb-1">12 Months</div>
-    <div className="relative z-10 text-gray-600">₹50L ARR</div>
-    
-    {/* Greyish highlight glow */}
-    <div className="absolute inset-0 -z-0 bg-gradient-to-br from-gray-400/20 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-    
-    {/* Subtle shimmer effect */}
-    <div className="absolute -inset-full top-0 -z-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-gray-300/20 opacity-0 transition-all group-hover:animate-shimmer group-hover:opacity-100" />
-  </div>
-  
-  <div className="group relative overflow-hidden rounded-2xl border border-gray-300/30 bg-gray-200/20 p-4 text-center backdrop-blur-md transition-all hover:border-gray-400/50 hover:bg-gray-300/30 hover:shadow-lg hover:shadow-gray-500/20">
-    <div className="relative z-10 font-bold text-gray-800 mb-1">18-24 Months</div>
-    <div className="relative z-10 text-gray-600">Series A Ready</div>
-    
-    {/* Greyish highlight glow */}
-    <div className="absolute inset-0 -z-0 bg-gradient-to-br from-gray-400/20 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-    
-    {/* Subtle shimmer effect */}
-    <div className="absolute -inset-full top-0 -z-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-gray-300/20 opacity-0 transition-all group-hover:animate-shimmer group-hover:opacity-100" />
-  </div>
-</div>
+            <div className="grid md:grid-cols-3 gap-4 mb-8 text-sm">
+              <div className="card p-4 text-center">
+                <div className="font-bold text-main mb-1">6 Months</div>
+                <div className="text-muted">5 Malls Live</div>
+              </div>
+              <div className="card p-4 text-center">
+                <div className="font-bold text-main mb-1">12 Months</div>
+                <div className="text-muted">₹50L ARR</div>
+              </div>
+              <div className="card p-4 text-center">
+                <div className="font-bold text-main mb-1">18-24 Months</div>
+                <div className="text-muted">Series A Ready</div>
+              </div>
+            </div>
 
-           <div className="mt-9 flex flex-col sm:flex-row gap-4 justify-center items-center">
-  <a 
-    href="mailto:tarun.prasad.mbaie27@sibmpune.edu.in" 
-    className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-gray-300/30 bg-gray-200/20 px-6 py-3 backdrop-blur-md transition-all hover:border-gray-400/50 hover:bg-gray-300/30 hover:shadow-lg hover:shadow-gray-500/20"
-  >
-    <span className="relative z-10 font-medium text-gray-700 transition-colors group-hover:text-gray-900">
-      Contact Founder
-    </span>
-    
-    {/* Greyish highlight glow */}
-    <div className="absolute inset-0 -z-0 bg-gradient-to-r from-gray-400/20 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-    
-    {/* Subtle shimmer effect */}
-    <div className="absolute -inset-full top-0 -z-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-gray-300/20 opacity-0 transition-all group-hover:animate-shimmer group-hover:opacity-100" />
-  </a>
-  
-  <a 
-    href="tel:+919643824159" 
-    className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-gray-300/30 bg-gray-200/20 px-6 py-3 backdrop-blur-md transition-all hover:border-gray-400/50 hover:bg-gray-300/30 hover:shadow-lg hover:shadow-gray-500/20"
-  >
-    <span className="relative z-10 font-medium text-gray-700 transition-colors group-hover:text-gray-900">
-      +91-96438241589
-    </span>
-    
-    {/* Greyish highlight glow */}
-    <div className="absolute inset-0 -z-0 bg-gradient-to-r from-gray-400/20 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-    
-    {/* Subtle shimmer effect */}
-    <div className="absolute -inset-full top-0 -z-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-gray-300/20 opacity-0 transition-all group-hover:animate-shimmer group-hover:opacity-100" />
-  </a>
-</div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a href="mailto:tarun.prasad.mbaie27@sibmpune.edu.in" className="btn-primary">
+                Contact Founder
+              </a>
+              <a href="tel:+919643824159" className="btn-secondary">
+                +91-96438241589
+              </a>
+            </div>
           </div>
         </div>
       </section>
-      )}
 
       {/* Footer */}
       <footer className="border-t border-subtle py-12 bg-surface">
